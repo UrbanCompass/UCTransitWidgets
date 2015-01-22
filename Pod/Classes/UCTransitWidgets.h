@@ -9,5 +9,7 @@
 #ifndef Pods_Header_h
 #define Pods_Header_h
 
+#import "UCTransitLine.h"
+#import "UCTransitIconView.h"
 
 #endif

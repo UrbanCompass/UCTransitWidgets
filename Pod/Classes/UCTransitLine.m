@@ -8,38 +8,10 @@
 
 #import "UCTransitLine.h"
 
-typedef NS_ENUM(NSInteger, UCTransitLineNY) {
-    UCMTALine1 = 0,
-    UCMTALine2,
-    UCMTALine3,
-    UCMTALine4,
-    UCMTALine5,
-    UCMTALine6,
-    UCMTALine6X, // 6 Express
-    UCMTALine7,
-    UCMTALine7X, // 7 Express
-    UCMTALineA,
-    UCMTALineB,
-    UCMTALineC,
-    UCMTALineD,
-    UCMTALineE,
-    UCMTALineF,
-    UCMTALineG,
-    UCMTALineJ,
-    UCMTALineL,
-    UCMTALineM,
-    UCMTALineN,
-    UCMTALineQ,
-    UCMTALineR,
-    UCMTALineS, // Franklin shuttle
-    UCMTALineHH, // Rockaway shuttle
-    UCMTALine0, // 42nd St shuttle
-    UCMTALineT // 2nd Ave subway
-};
-
 @interface UCTransitLine ()
 @property (nonatomic, readwrite) UCTransitSystem system;
-@property (nonatomic, assign) NSInteger lineCode;
+@property (nonatomic, readwrite) NSInteger lineCode;
+
 @end
 
 @implementation UCTransitLine
@@ -47,8 +19,8 @@ typedef NS_ENUM(NSInteger, UCTransitLineNY) {
 - (instancetype)initWithSystem:(UCTransitSystem)system line:(NSString *)line {
     self = [super init];
     if (self) {
-        self.system = system;
-        self.lineCode = [self lineCodeForSystem:system line:line];
+        _system = system;
+        _lineCode = [self lineCodeForSystem:system line:line];
         if (self.lineCode == NSNotFound) {
             @throw [NSException exceptionWithName:NSInvalidArgumentException
                                            reason:@"Line code specified does not map to a known line in the system"
@@ -103,6 +75,7 @@ typedef NS_ENUM(NSInteger, UCTransitLineNY) {
                            @"R" : @(UCMTALineR),
                            @"S" : @(UCMTALineS),
                            @"T" : @(UCMTALineT),
+                           @"Z" : @(UCMTALineZ),
                            };
     NSNumber *line = map[lineId];
     if (line) {

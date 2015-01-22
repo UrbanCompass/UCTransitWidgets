@@ -6,5 +6,5 @@
 #import <UIKit/UIKit.h>
 
 @interface UIColor (UCTransitColor)
-
++ (UIColor *)colorWithHex:(UInt32)col;
 @end

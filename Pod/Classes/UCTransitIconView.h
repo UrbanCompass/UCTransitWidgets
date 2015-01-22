@@ -6,8 +6,13 @@
 
 @class UCTransitLine;
 
-@interface UCTransitIconView : UIView
-
+@interface UCSystemIconView : UIView
+@property (nonatomic, readonly) UCTransitLine *line;
 - (instancetype)initWithLine:(UCTransitLine *)line;
+@end
 
+
+@interface UCTransitIconView : UIView
+@property (nonatomic, copy) UCTransitLine *line;
+- (instancetype)initWithLine:(UCTransitLine *)line;
 @end

@@ -10,8 +10,32 @@
 
 #import "UCTransitWidgets.h"
 
-@interface UCViewController ()
+@interface UCIconCell : UICollectionViewCell
+@property (nonatomic, copy) UCTransitLine *line;
 @property (nonatomic) UCTransitIconView *iconView;
+@end
+
+@implementation UCIconCell
+
+- (id)initWithFrame:(CGRect)frame {
+    self = [super initWithFrame:frame];
+    if (self) {
+        self.iconView = [[UCTransitIconView alloc] initWithFrame:self.bounds];
+        self.iconView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+        [self.contentView addSubview:self.iconView];
+    }
+    return self;
+}
+
+- (void)setLine:(UCTransitLine *)line {
+    self.iconView.line = line;
+}
+
+@end
+
+@interface UCViewController () <UICollectionViewDataSource>
+@property (nonatomic) UICollectionView *collectionView;
+@property (nonatomic) NSArray *lines;
 @end
 
 @implementation UCViewController
@@ -20,14 +44,34 @@
 {
     [super viewDidLoad];
 
-//    UCTransitLine *line = [[UCTransitLine alloc] initWith:]
-//    self.iconView = [[UCTransitIconView alloc] initWithLine:<#(UCTransitLine *)#>]
+    NSMutableArray *lines = [[NSMutableArray alloc] init];
+    [lines addObject:[[UCTransitLine alloc] initWithSystem:UCTransitSystemNYCSubway line:@"6"]];
+    self.lines = lines;
+
+    UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
+    flowLayout.itemSize = CGSizeMake(70.f, 70.f);
+    flowLayout.minimumLineSpacing = 10.f;
+    flowLayout.minimumInteritemSpacing = 10.f;
+
+    self.collectionView = [[UICollectionView alloc] initWithFrame:self.view.bounds collectionViewLayout:flowLayout];
+    self.collectionView.dataSource = self;
+    [self.view addSubview:self.collectionView];
+
+    [self.collectionView registerClass:[UCIconCell class] forCellWithReuseIdentifier:@"default"];
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
+    return 1;
+}
+
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
+    return [self.lines count];
+}
+
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+    UCIconCell *cell = (UCIconCell *)[collectionView dequeueReusableCellWithReuseIdentifier:@"default" forIndexPath:indexPath];
+    cell.line = self.lines[indexPath.item];
+    return cell;
 }
 
 @end
