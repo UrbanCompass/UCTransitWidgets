@@ -8,8 +8,10 @@
 
 #import "UCViewController.h"
 
-@interface UCViewController ()
+#import "UCTransitWidgets.h"
 
+@interface UCViewController ()
+@property (nonatomic) UCTransitIconView *iconView;
 @end
 
 @implementation UCViewController
@@ -17,7 +19,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
+
+//    UCTransitLine *line = [[UCTransitLine alloc] initWith:]
+//    self.iconView = [[UCTransitIconView alloc] initWithLine:<#(UCTransitLine *)#>]
 }
 
 - (void)didReceiveMemoryWarning

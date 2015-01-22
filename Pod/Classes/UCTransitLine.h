@@ -13,7 +13,7 @@ typedef NS_ENUM(NSUInteger, UCTransitSystem) {
     UCTransitSystemNYCSubway,
 };
 
-@interface UCTransitLine : NSObject
+@interface UCTransitLine : NSObject <NSCopying>
 
 - (instancetype)initWithSystem:(UCTransitSystem)system line:(NSString *)line;
 
