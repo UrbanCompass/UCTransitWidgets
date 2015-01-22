@@ -1,5 +1,6 @@
 # Xcode
 #
+Example/Pods
 build/
 *.pbxuser
 !default.pbxuser
