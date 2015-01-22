@@ -1,0 +1,14 @@
+source 'https://github.com/CocoaPods/Specs.git'
+
+target 'UCTransitWidgets', :exclusive => true do
+  pod "UCTransitWidgets", :path => "../"
+end
+
+target 'Tests', :exclusive => true do
+  pod "UCTransitWidgets", :path => "../"
+
+  pod 'Specta', '~> 0.2.1'
+  pod 'Expecta'
+  pod 'FBSnapshotTestCase'
+  pod 'Expecta+Snapshots'
+end
