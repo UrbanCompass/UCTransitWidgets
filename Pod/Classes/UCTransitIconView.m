@@ -19,8 +19,4 @@
     return self;
 }
 
-- (NSString *)description {
-    
-}
-
 @end

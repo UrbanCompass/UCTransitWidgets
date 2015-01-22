@@ -6,8 +6,8 @@
 //
 //
 
-#ifndef Pods_UCTransitWidgets_h
-#define Pods_UCTransitWidgets_h
+#ifndef Pods_Header_h
+#define Pods_Header_h
 
 
 #endif
