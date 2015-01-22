@@ -6,6 +6,7 @@
 
 #import "UCTransitLine.h"
 #import "UCMTAIconView.h"
+#import "UCWMTAIconView.h"
 #import "UIColor+UCTransitColor.h"
 
 @interface UCTransitIconView ()
@@ -34,8 +35,15 @@
 }
 
 - (UCSystemIconView *)iconViewForLine:(UCTransitLine *)line {
-    if (line.system == UCTransitSystemNYCSubway) {
-        return [[UCMTAIconView alloc] initWithLine:line];
+    switch (line.system) {
+        case UCTransitSystemDCMetro:
+            return [[UCWMTAIconView alloc] initWithLine:line];
+            break;
+        case UCTransitSystemNYCSubway:
+            return [[UCMTAIconView alloc] initWithLine:line];
+            break;
+        default:
+            break;
     }
     return nil;
 }

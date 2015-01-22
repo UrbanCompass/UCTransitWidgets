@@ -72,6 +72,14 @@
     [lines addObject:[[UCTransitLine alloc] initWithSystem:UCTransitSystemNYCSubway line:@"S"]];
     [lines addObject:[[UCTransitLine alloc] initWithSystem:UCTransitSystemNYCSubway line:@"T"]];
     [lines addObject:[[UCTransitLine alloc] initWithSystem:UCTransitSystemNYCSubway line:@"Z"]];
+
+    [lines addObject:[[UCTransitLine alloc] initWithSystem:UCTransitSystemDCMetro line:@"RD"]];
+    [lines addObject:[[UCTransitLine alloc] initWithSystem:UCTransitSystemDCMetro line:@"BL"]];
+    [lines addObject:[[UCTransitLine alloc] initWithSystem:UCTransitSystemDCMetro line:@"OR"]];
+    [lines addObject:[[UCTransitLine alloc] initWithSystem:UCTransitSystemDCMetro line:@"YL"]];
+    [lines addObject:[[UCTransitLine alloc] initWithSystem:UCTransitSystemDCMetro line:@"GR"]];
+    [lines addObject:[[UCTransitLine alloc] initWithSystem:UCTransitSystemDCMetro line:@"SV"]];
+    [lines addObject:[[UCTransitLine alloc] initWithSystem:UCTransitSystemDCMetro line:@"PU"]];
     self.lines = lines;
 
     UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];

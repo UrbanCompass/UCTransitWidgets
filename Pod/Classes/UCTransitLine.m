@@ -42,6 +42,9 @@
         case UCTransitSystemNYCSubway:
             return [self lineCodeForNYLineId:lineId];
             break;
+        case UCTransitSystemDCMetro:
+            return [self lineCodeForDCLineId:lineId];
+            break;
         default:
             return NSNotFound;
             break;
@@ -76,6 +79,22 @@
                            @"S" : @(UCMTALineS),
                            @"T" : @(UCMTALineT),
                            @"Z" : @(UCMTALineZ),
+                           };
+    NSNumber *line = map[lineId];
+    if (line) {
+        return [line integerValue];
+    }
+    return NSNotFound;
+}
+
+- (UCTransitLineWMTA)lineCodeForDCLineId:(NSString *)lineId {
+    NSDictionary *map = @{ @"RD" : @(UCWMTARed),
+                           @"OR" : @(UCWMTAOrange),
+                           @"SV" : @(UCWMTASilver),
+                           @"BL" : @(UCWMTABlue),
+                           @"YL" : @(UCWMTAYellow),
+                           @"GR" : @(UCWMTAGreen),
+                           @"PU" : @(UCWMTAPurple),
                            };
     NSNumber *line = map[lineId];
     if (line) {

@@ -43,6 +43,16 @@ typedef NS_ENUM(NSInteger, UCTransitLineNY) {
     UCMTALineZ
 };
 
+typedef NS_ENUM(NSInteger, UCTransitLineWMTA) {
+    UCWMTARed = 0,
+    UCWMTAOrange,
+    UCWMTASilver,
+    UCWMTABlue,
+    UCWMTAYellow,
+    UCWMTAGreen,
+    UCWMTAPurple
+};
+
 @interface UCTransitLine : NSObject <NSCopying>
 
 - (instancetype)initWithSystem:(UCTransitSystem)system line:(NSString *)line;
