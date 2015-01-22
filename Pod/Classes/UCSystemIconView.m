@@ -16,6 +16,7 @@
     self = [super init];
     if (self) {
         _line = line;
+        self.opaque = NO;
     }
     return self;
 }

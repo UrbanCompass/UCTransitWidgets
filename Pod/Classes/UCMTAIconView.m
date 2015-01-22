@@ -11,22 +11,34 @@
 #import "UCTransitLine.h"
 #import "UIColor+UCTransitColor.h"
 
+@interface UCMTAIconView ()
+@property (nonatomic) NSString *displayName;
+@end
+
 @implementation UCMTAIconView
 
 - (instancetype)initWithLine:(UCTransitLine *)line {
     self = [super initWithLine:line];
     if (self) {
-        self.badge = [[UIView alloc] init];
-        [self addSubview:self.badge];
-
-        self.label = [[UILabel alloc] init];
-        [self addSubview:self.label];
-
-        self.badge.backgroundColor = [self badgeColorForLine:line.lineCode];
-        self.label.textColor = [self displayColorForLine:line.lineCode];
-        self.label.text = [self displayNameForLine:line.lineCode];
+        self.displayName = [self displayNameForLine:line.lineCode];
     }
     return self;
+}
+
+- (void)setBounds:(CGRect)bounds {
+    CGSize origSize = self.bounds.size;
+    [super setBounds:bounds];
+    if (!CGSizeEqualToSize(bounds.size, origSize)) {
+        [self setNeedsDisplay];
+    }
+}
+
+- (void)setFrame:(CGRect)frame {
+    CGSize origSize = self.frame.size;
+    [super setFrame:frame];
+    if (!CGSizeEqualToSize(frame.size, origSize)) {
+        [self setNeedsDisplay];
+    }
 }
 
 - (BOOL)isLineTriangleShaped:(UCTransitLineNY)line {
@@ -213,51 +225,52 @@
     }
 }
 
-- (void)layoutSubviews {
-    [super layoutSubviews];
+- (void)drawRect:(CGRect)rect {
+    CGContextRef ctx = UIGraphicsGetCurrentContext();
 
-    BOOL isTriangle = [self isLineTriangleShaped:self.line.lineCode];
-    CGFloat widthHeight = 0.f;
-    if (isTriangle) {
-        CGFloat half = MIN(self.bounds.size.width, self.bounds.size.height) / 2.f;
-        widthHeight = 2.f * half;
+    UIColor *backColor = [self badgeColorForLine:self.line.lineCode];
+    UIColor *foreColor = [self displayColorForLine:self.line.lineCode];
+
+    CGFloat widthHeight = MIN(self.bounds.size.width, self.bounds.size.height);
+    CGFloat minX = self.bounds.size.width / 2.f - widthHeight / 2.f;
+    CGFloat minY = self.bounds.size.height / 2.f - widthHeight / 2.f;
+    if ([self isLineTriangleShaped:self.line.lineCode]) {
+        CGFloat half = widthHeight / 2.f;
         UIBezierPath *path = [UIBezierPath bezierPath];
-        [path moveToPoint:CGPointMake(half, 0.f)];
-        [path addLineToPoint:CGPointMake(2.f * half, half)];
-        [path addLineToPoint:CGPointMake(half, 2.f * half)];
-        [path addLineToPoint:CGPointMake(0.f, half)];
+        [path moveToPoint:CGPointMake(minX + half, minY)];
+        [path addLineToPoint:CGPointMake(minX + widthHeight, minY + half)];
+        [path addLineToPoint:CGPointMake(minX + half, minY + widthHeight)];
+        [path addLineToPoint:CGPointMake(minX, minY + half)];
         [path closePath];
-        CAShapeLayer *maskLayer = [[CAShapeLayer alloc] init];
-        maskLayer.path = path.CGPath;
-        self.badge.layer.mask = maskLayer;
+        CGContextSetFillColorWithColor(ctx, backColor.CGColor);
+        CGContextAddPath(ctx, path.CGPath);
+        CGContextFillPath(ctx);
     } else {
-        CGFloat cornerRadius = MIN(self.bounds.size.width, self.bounds.size.height) / 2.f;
-        self.badge.layer.cornerRadius = cornerRadius;
-        self.badge.layer.mask = nil;
-        widthHeight = 2.f * cornerRadius;
+        CGRect circle;
+        circle.size.width = circle.size.height = widthHeight;
+        circle.origin.x = self.bounds.size.width / 2.f - circle.size.width / 2.f;
+        circle.origin.y = self.bounds.size.height / 2.f - circle.size.height / 2.f;
+        CGContextSetFillColorWithColor(ctx, backColor.CGColor);
+        CGContextFillEllipseInRect(ctx, circle);
     }
 
-    CGRect r;
-    r.size.width = r.size.height = widthHeight;
-    r.origin.x = self.bounds.size.width / 2.f - r.size.width / 2.f;
-    r.origin.y = self.bounds.size.height / 2.f - r.size.height / 2.f;
-    self.badge.frame = r;
-
-    CGFloat heightPct = 0.4f; // experimentally measured from the vignelli manual
+    CGFloat heightPct = 0.65f;
+    if (widthHeight <= 20.f) {
+        heightPct = 0.8f;
+    } else if (widthHeight <= 40.f) {
+        heightPct = 0.7f;
+    }
     CGFloat baseSize = 10.f;
     UIFont *testFont = [UIFont fontWithName:@"Helvetica-Bold" size:baseSize];
-    CGFloat capHeight = testFont.capHeight;
+    CGFloat testHeight = [self.displayName sizeWithAttributes:@{ NSFontAttributeName: testFont }].height;
 
-    CGFloat multiplier = (heightPct * widthHeight) / capHeight;
+    CGFloat multiplier = (heightPct * widthHeight) / testHeight;
     UIFont *font = [UIFont fontWithName:@"Helvetica-Bold" size:multiplier * baseSize];
-    self.label.font = font;
-    [self.label sizeToFit];
-
-    CGFloat centerY = font.ascender - font.capHeight / 2.f;
-    r = self.label.frame;
-    r.origin.x = self.bounds.size.width / 2.f - r.size.width / 2.f;
-    r.origin.y = self.bounds.size.height / 2.f - r.size.height + centerY;
-    self.label.frame = r;
+    CGSize textSize = [self.displayName sizeWithAttributes:@{ NSFontAttributeName: font }];
+    CGPoint p = CGPointMake(self.bounds.size.width / 2.f - textSize.width / 2.f,
+                            self.bounds.size.height / 2.f - textSize.height / 2.f);
+    [self.displayName drawAtPoint:p withAttributes:@{ NSFontAttributeName: font,
+                                                      NSForegroundColorAttributeName: foreColor}];
 }
 
 @end

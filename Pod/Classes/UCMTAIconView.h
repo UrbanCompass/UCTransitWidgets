@@ -9,6 +9,4 @@
 #import "UCSystemIconView.h"
 
 @interface UCMTAIconView : UCSystemIconView
-@property (nonatomic) UIView *badge;
-@property (nonatomic) UILabel *label;
 @end
