@@ -6,7 +6,7 @@
 //
 //
 
-#import "UCTransitIconView.m"
+#import "UCSystemIconView.h"
 
 @interface UCMTAIconView : UCSystemIconView
 @property (nonatomic) UIView *badge;

@@ -8,18 +8,6 @@
 #import "UCMTAIconView.h"
 #import "UIColor+UCTransitColor.h"
 
-@implementation UCSystemIconView
-
-- (instancetype)initWithLine:(UCTransitLine *)line {
-    self = [super init];
-    if (self) {
-        _line = line;
-    }
-    return self;
-}
-
-@end
-
 @interface UCTransitIconView ()
 @property (nonatomic) UCSystemIconView *iconView;
 @end

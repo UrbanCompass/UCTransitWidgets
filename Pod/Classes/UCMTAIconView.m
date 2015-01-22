@@ -8,6 +8,9 @@
 
 #import "UCMTAIconView.h"
 
+#import "UCTransitLine.h"
+#import "UIColor+UCTransitColor.h"
+
 @implementation UCMTAIconView
 
 - (instancetype)initWithLine:(UCTransitLine *)line {
