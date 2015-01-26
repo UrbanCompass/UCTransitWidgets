@@ -56,6 +56,7 @@
 
 - (UCTransitLineNY)lineCodeForNYLineId:(NSString *)lineId {
     NSDictionary *map = @{ @"0" : @(UCMTALine0),
+                           @"GS": @(UCMTALine0), // the GCT shuttle is called GS in some station feeds
                            @"1" : @(UCMTALine1),
                            @"2" : @(UCMTALine2),
                            @"3" : @(UCMTALine3),
@@ -73,6 +74,7 @@
                            @"F" : @(UCMTALineF),
                            @"G" : @(UCMTALineG),
                            @"HH" : @(UCMTALineHH),
+                           @"H" : @(UCMTALineHH), // the Rockaway shuttle is called H in some station feeds
                            @"J" : @(UCMTALineJ),
                            @"L" : @(UCMTALineL),
                            @"M" : @(UCMTALineM),
@@ -80,6 +82,7 @@
                            @"Q" : @(UCMTALineQ),
                            @"R" : @(UCMTALineR),
                            @"S" : @(UCMTALineS),
+                           @"FS" : @(UCMTALineS), // the Franklin Shuttle is called FS in some station feeds
                            @"T" : @(UCMTALineT),
                            @"Z" : @(UCMTALineZ),
                            };
