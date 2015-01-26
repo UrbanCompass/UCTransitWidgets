@@ -9,5 +9,4 @@
 #import "UCSystemIconView.h"
 
 @interface UCWMTAIconView : UCSystemIconView
-
 @end
