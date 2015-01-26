@@ -41,7 +41,7 @@
     }
 }
 
-- (UIColor *)displayColorForLine:(UCTransitLineWMTA)line {
+- (UIColor *)displayColorForLine:(UCTransitLineWMTARail)line {
     switch (line) {
         case UCWMTARed:
         case UCWMTABlue:
@@ -60,7 +60,7 @@
     }
 }
 
-- (UIColor *)badgeColorForLine:(UCTransitLineWMTA)line {
+- (UIColor *)badgeColorForLine:(UCTransitLineWMTARail)line {
     switch (line) {
         case UCWMTABlue:
             return [UIColor colorWithHex:0x0096d6];
@@ -89,7 +89,7 @@
     }
 }
 
-- (NSString *)displayNameForLine:(UCTransitLineWMTA)line {
+- (NSString *)displayNameForLine:(UCTransitLineWMTARail)line {
     switch (line) {
         case UCWMTAYellow:
             return @"YL";
