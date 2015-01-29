@@ -46,7 +46,7 @@
 
     CGFloat widthHeight = MIN(self.bounds.size.width, self.bounds.size.height);
 
-    CGFloat heightPct = 0.65f;
+    CGFloat heightPct = 0.50f;
     if (widthHeight <= 20.f) {
         heightPct = 0.8f;
     } else if (widthHeight <= 40.f) {
