@@ -8,5 +8,8 @@
 
 #import "UCSystemIconView.h"
 
+/**
+ *  UCWMTAIconView renders icons for the Washington DC Metro
+ */
 @interface UCWMTAIconView : UCSystemIconView
 @end

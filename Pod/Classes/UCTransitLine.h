@@ -9,38 +9,128 @@
 #import <Foundation/Foundation.h>
 
 typedef NS_ENUM(NSUInteger, UCTransitSystem) {
+    /**
+     *  DC Metro Rail
+     */
     UCTransitSystemDCMetroRail = 0,
+    /**
+     *  DC Metro Bus
+     */
     UCTransitSystemDCMetroBus,
+    /**
+     *  NYC Subway
+     */
     UCTransitSystemNYCSubway,
 };
 
 typedef NS_ENUM(NSInteger, UCTransitLineNY) {
+    /**
+     *  1 Train - IRT 7th Ave Line
+     */
     UCMTALine1 = 0,
+    /**
+     *  2 Train - IRT 7th Ave Line
+     */
     UCMTALine2,
+    /**
+     *  3 Train - IRT 7th Ave Line
+     */
     UCMTALine3,
+    /**
+     *  4 Train - IRT Lexington Ave Line
+     */
     UCMTALine4,
+    /**
+     *  5 Train - IRT Lexington Ave Line
+     */
     UCMTALine5,
+    /**
+     *  5 Train - IRT Lexington Ave Line
+     */
     UCMTALine6,
-    UCMTALine6X, // 6 Express
+    /**
+     *  6 Express Train - IRT Lexington Ave Line
+     */
+    UCMTALine6X,
+    /**
+     *  7 Train - IRT Flushing Line
+     */
     UCMTALine7,
-    UCMTALine7X, // 7 Express
+    /**
+     *  7 Express Train - IRT Flushing Line
+     */
+    UCMTALine7X,
+    /**
+     *  A Train - IND 8th Ave Line
+     */
     UCMTALineA,
+    /**
+     *  B Train - IND 6th Ave Line
+     */
     UCMTALineB,
+    /**
+     *  C Train - IND 8th Ave Line
+     */
     UCMTALineC,
+    /**
+     *  D Train - IND 6th Ave Line
+     */
     UCMTALineD,
+    /**
+     *  E Train - IND 8th Ave Line
+     */
     UCMTALineE,
+    /**
+     *  F Train - IND 6th Ave Line
+     */
     UCMTALineF,
+    /**
+     *  G Train - IND Crosstown Line
+     */
     UCMTALineG,
+    /**
+     *  J Train - BMT Nassau Line
+     */
     UCMTALineJ,
+    /**
+     *  L Train - BMT Canarsie Line
+     */
     UCMTALineL,
+    /**
+     *  M Train - IND 6th Ave Line
+     */
     UCMTALineM,
+    /**
+     *  N Train - BMT Broadway Line
+     */
     UCMTALineN,
+    /**
+     *  N Train - BMT Broadway Line
+     */
     UCMTALineQ,
+    /**
+     *  N Train - BMT Broadway Line
+     */
     UCMTALineR,
-    UCMTALineS, // Franklin shuttle
-    UCMTALineHH, // Rockaway shuttle
-    UCMTALine0, // 42nd St shuttle
-    UCMTALineT, // 2nd Ave subway
+    /**
+     *  Franklin Avenue Shuttle (some APIs confuse this with the other shuttle lines)
+     */
+    UCMTALineS,
+    /**
+     *  Rockaway Park Shuttle
+     */
+    UCMTALineHH,
+    /**
+     *  42nd St Shuttle (some APIs specify this line as "S")
+     */
+    UCMTALine0,
+    /**
+     *  T Train - 2nd Ave Subway (does not actually exist yet, reserved for future use)
+     */
+    UCMTALineT,
+    /**
+     *  Z Train - BMT Nassau Line
+     */
     UCMTALineZ
 };
 
@@ -367,6 +457,15 @@ typedef NS_ENUM(NSInteger, UCTransitLineWMTABus) {
 
 @interface UCTransitLine : NSObject <NSCopying>
 
+/**
+ *  Creates a UCTransitLine instance based on system and line within the system. Throws an NSInvalidArgumentException
+ *  if the specified system/line combination is not valid.
+ *
+ *  @param system the transit system
+ *  @param line   the train/bus/transit line within the system
+ *
+ *  @return A UCTransitLine instance
+ */
 - (instancetype)initWithSystem:(UCTransitSystem)system line:(NSString *)line;
 
 @property (nonatomic, readonly) UCTransitSystem system;

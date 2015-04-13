@@ -8,5 +8,8 @@
 
 #import "UCSystemIconView.h"
 
+/**
+ *  UCMTAIconView renders subway line icons for the NYC subway system.
+ */
 @interface UCMTAIconView : UCSystemIconView
 @end
