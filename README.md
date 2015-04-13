@@ -9,7 +9,18 @@
 
 To run the example project, clone the repo, and run `pod install` from the Example directory first.
 
+```shell
+$ git clone https://github.com/UrbanCompass/UCTransitWidgets.git
+$ cd Example
+$ pod install
+```
 ## Requirements
+
+Cocoapods is required to install dependencies for this project.
+
+```shell
+$ sudo gem install cocoapods
+```
 
 ## Installation
 
