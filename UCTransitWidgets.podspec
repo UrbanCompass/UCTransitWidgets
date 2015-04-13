@@ -19,7 +19,7 @@ Pod::Spec.new do |s|
   s.license          = 'MIT'
   s.author           = { "Jerry Wong" => "jerry.wong@urbancompass.com" }
   s.source           = { :git => "https://github.com/UrbanCompass/UCTransitWidgets.git", :tag => s.version.to_s }
-  s.social_media_url = 'https://twitter.com/compassinc'
+  s.social_media_url = 'https://twitter.com/potatolicious'
 
   s.platform     = :ios, '7.0'
   s.requires_arc = true
