@@ -1,6 +1,6 @@
 # UCTransitWidgets
 
-[![CI Status](http://img.shields.io/travis/Jerry Wong/UCTransitWidgets.svg?style=flat)](https://travis-ci.org/Jerry Wong/UCTransitWidgets)
+[![CI Status](http://img.shields.io/travis/UrbanCompass/UCTransitWidgets.svg?style=flat)](https://travis-ci.org/UrbanCompass/UCTransitWidgets)
 [![Version](https://img.shields.io/cocoapods/v/UCTransitWidgets.svg?style=flat)](http://cocoadocs.org/docsets/UCTransitWidgets)
 [![License](https://img.shields.io/cocoapods/l/UCTransitWidgets.svg?style=flat)](http://cocoadocs.org/docsets/UCTransitWidgets)
 [![Platform](https://img.shields.io/cocoapods/p/UCTransitWidgets.svg?style=flat)](http://cocoadocs.org/docsets/UCTransitWidgets)
