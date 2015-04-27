@@ -8,6 +8,11 @@
 
 #import <Foundation/Foundation.h>
 
+typedef NS_ENUM(NSUInteger, UCTransitErrorCode) {
+    UCTransitErrorCodeUnknown = 0,
+    UCTransitErrorCodeLineDoesNotExist
+};
+
 typedef NS_ENUM(NSUInteger, UCTransitSystem) {
     /**
      *  DC Metro Rail
@@ -456,6 +461,18 @@ typedef NS_ENUM(NSInteger, UCTransitLineWMTABus) {
 };
 
 @interface UCTransitLine : NSObject <NSCopying>
+
+/**
+ *  Creates a UCTransitLine instance based on system and line with the system. Returns nil with appropriate error
+ *  if the specified system/line combination cannot be created.
+ *
+ *  @param system the transit system
+ *  @param line   the train/bus/transit line within the system
+ *  @param error  error pointer
+ *
+ *  @return A UCTransitLine instance, or nil
+ */
+- (instancetype)initWithSystem:(UCTransitSystem)system line:(NSString *)line error:(out NSError **)error;
 
 /**
  *  Creates a UCTransitLine instance based on system and line within the system. Throws an NSInvalidArgumentException

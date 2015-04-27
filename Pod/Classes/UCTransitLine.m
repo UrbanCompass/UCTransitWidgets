@@ -16,6 +16,21 @@
 
 @implementation UCTransitLine
 
+- (instancetype)initWithSystem:(UCTransitSystem)system line:(NSString *)line error:(out NSError **)error {
+    self = [super init];
+    if (self) {
+        _system = system;
+        _lineCode = [self lineCodeForSystem:system line:line];
+        if (self.lineCode == NSNotFound) {
+            *error = [NSError errorWithDomain:[[NSBundle mainBundle] bundleIdentifier]
+                                         code:UCTransitErrorCodeLineDoesNotExist
+                                     userInfo:nil];
+            return nil;
+        }
+    }
+    return self;
+}
+
 - (instancetype)initWithSystem:(UCTransitSystem)system line:(NSString *)line {
     self = [super init];
     if (self) {
