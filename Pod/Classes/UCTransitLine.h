@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+extern NSString * const UCTransitSystemDomain;
+
 typedef NS_ENUM(NSUInteger, UCTransitErrorCode) {
     UCTransitErrorCodeUnknown = 0,
     UCTransitErrorCodeLineDoesNotExist
