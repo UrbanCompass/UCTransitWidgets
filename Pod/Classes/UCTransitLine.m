@@ -8,6 +8,8 @@
 
 #import "UCTransitLine.h"
 
+NSString * const UCTransitSystemDomain = @"UCTransitSystemDomain";
+
 @interface UCTransitLine ()
 @property (nonatomic, readwrite) UCTransitSystem system;
 @property (nonatomic, readwrite) NSInteger lineCode;
@@ -22,9 +24,12 @@
         _system = system;
         _lineCode = [self lineCodeForSystem:system line:line];
         if (self.lineCode == NSNotFound) {
-            *error = [NSError errorWithDomain:[[NSBundle mainBundle] bundleIdentifier]
+            *error = [NSError errorWithDomain:UCTransitSystemDomain
                                          code:UCTransitErrorCodeLineDoesNotExist
-                                     userInfo:nil];
+                                     userInfo:@{
+                                                @"System" : @(system),
+                                                @"LineCode" : @(_lineCode)
+                                                }];
             return nil;
         }
     }
@@ -39,7 +44,10 @@
         if (self.lineCode == NSNotFound) {
             @throw [NSException exceptionWithName:NSInvalidArgumentException
                                            reason:@"Line code specified does not map to a known line in the system"
-                                         userInfo:nil];
+                                         userInfo:@{
+                                                    @"System" : @(system),
+                                                    @"LineCode" : @(_lineCode)
+                                                    }];
         }
     }
     return self;
