@@ -7,8 +7,8 @@ end
 target 'Tests', :exclusive => true do
   pod "UCTransitWidgets", :path => "../"
 
-  pod 'Specta', '~> 0.2.1'
-  pod 'Expecta'
-  pod 'FBSnapshotTestCase'
-  pod 'Expecta+Snapshots'
+  pod 'Expecta', '~> 1.0.2'
+  pod 'FBSnapshotTestCase', '1.8'
+  pod 'Specta', '~> 1.0.2'
+  pod 'Expecta+Snapshots', '1.3.4'
 end
