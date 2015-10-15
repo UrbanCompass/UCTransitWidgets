@@ -26,4 +26,5 @@
  *  @return UCTransitIconView instance
  */
 - (instancetype)initWithLine:(UCTransitLine *)line;
+
 @end
