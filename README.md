@@ -35,7 +35,7 @@ Note that UCTransitIconView may display a different line after instantiation:
 
 ## Requirements
 
-Cocoapods is required to install dependencies for this project.
+CocoaPods is required to install dependencies for this project.
 
 ```shell
 $ sudo gem install cocoapods
